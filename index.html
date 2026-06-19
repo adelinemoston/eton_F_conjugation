@@ -6,275 +6,354 @@
 <title>French Verb Revision</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,600;0,9..144,700;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  --navy:   #1a1f4b;
-  --blue:   #2563eb;
-  --red:    #e63946;
-  --gold:   #f4a522;
-  --cream:  #fdf8f0;
-  --paper:  #f7f3ea;
-  --ink:    #1a1a2e;
-  --ink2:   #4a4a6a;
-  --ink3:   #8888aa;
-  --white:  #ffffff;
-  --rule:   rgba(26,31,75,0.10);
-  --rule2:  rgba(26,31,75,0.22);
-  --success-bg: #e8f5e0; --success-bd: rgba(56,142,60,0.35); --success-tx: #2d6a4f;
-  --danger-bg:  #fdecea; --danger-bd:  rgba(198,40,40,0.30); --danger-tx:  #b71c1c;
-  --warn-bg:    #fff8e6; --warn-tx:    #92610a;
+  --bg:      #0d1117;
+  --surface: #161b22;
+  --card:    #1c2333;
+  --card2:   #21283a;
+  --border:  rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.16);
+  --blue:    #4f8ef7;
+  --blue-glow: rgba(79,142,247,0.20);
+  --red:     #f25c5c;
+  --gold:    #f5c842;
+  --mint:    #3dd68c;
+  --text:    #e6edf3;
+  --text2:   #8b949e;
+  --text3:   #484f58;
+  --white:   #ffffff;
+
+  --success-bg: rgba(61,214,140,0.10);
+  --success-bd: rgba(61,214,140,0.30);
+  --success-tx: #3dd68c;
+  --danger-bg:  rgba(242,92,92,0.10);
+  --danger-bd:  rgba(242,92,92,0.30);
+  --danger-tx:  #f25c5c;
+  --warn-bg:    rgba(245,200,66,0.12);
+  --warn-tx:    #f5c842;
+
   --r:  10px;
   --rl: 16px;
+  --rxl: 20px;
 }
+
+@media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } }
 
 body {
   font-family: 'Inter', system-ui, sans-serif;
-  background: var(--paper);
-  color: var(--ink);
+  background: var(--bg);
+  color: var(--text);
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  padding: 2rem 1rem 4rem;
+  padding: 2rem 1rem 5rem;
 }
 
-/* ── Page shell ── */
-#app { width: 100%; max-width: 620px; }
+#app { width: 100%; max-width: 600px; }
 .screen { display: none; }
 .screen.active { display: block; }
 
-/* ── Home header ── */
+/* ─── HOME HERO ─────────────────────────────────────────── */
 .home-hero {
-  background: var(--navy);
-  border-radius: var(--rl);
-  padding: 2rem 2rem 1.75rem;
-  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #1a2744 0%, #0f1729 100%);
+  border: 1px solid var(--border2);
+  border-radius: var(--rxl);
+  padding: 2.25rem 2rem 2rem;
+  margin-bottom: 1.25rem;
   position: relative;
   overflow: hidden;
 }
 .home-hero::before {
+  /* Tricolore stripe on left */
   content: '';
-  position: absolute; top: 0; left: 0; bottom: 0; width: 6px;
+  position: absolute; top: 0; left: 0; bottom: 0; width: 5px;
   background: linear-gradient(to bottom, var(--blue) 33.3%, var(--white) 33.3% 66.6%, var(--red) 66.6%);
+}
+.home-hero::after {
+  /* Decorative large «  » in background */
+  content: '« »';
+  position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
+  font-family: 'Fraunces', serif; font-size: 80px; font-style: italic;
+  color: rgba(79,142,247,0.07);
+  pointer-events: none; line-height: 1; user-select: none;
 }
 .home-hero h1 {
   font-family: 'Fraunces', Georgia, serif;
-  font-size: 28px; font-weight: 700;
-  color: var(--white);
-  letter-spacing: -0.01em;
-  margin-bottom: 4px;
+  font-size: 30px; font-weight: 600; font-style: italic;
+  color: var(--white); letter-spacing: -0.02em; margin-bottom: 6px;
 }
 .home-hero .tagline {
-  font-size: 13px; color: rgba(255,255,255,0.55);
-  letter-spacing: 0.04em; text-transform: uppercase;
+  font-size: 12px; color: var(--text2);
+  letter-spacing: 0.08em; text-transform: uppercase;
+}
+.streak-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: rgba(245,200,66,0.12); border: 1px solid rgba(245,200,66,0.25);
+  border-radius: 20px; padding: 3px 10px;
+  font-size: 12px; color: var(--gold); font-weight: 600;
+  margin-top: 12px;
 }
 
-/* ── Mode cards ── */
+/* ─── MODE CARDS ─────────────────────────────────────────── */
 .mode-grid {
   display: grid; grid-template-columns: 1fr 1fr;
   gap: 10px; margin-bottom: 1.25rem;
 }
-@media (max-width: 480px) { .mode-grid { grid-template-columns: 1fr; } }
+@media (max-width: 460px) { .mode-grid { grid-template-columns: 1fr; } }
 
 .mode-card {
-  background: var(--white);
-  border: 1.5px solid transparent;
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: var(--rl);
-  padding: 1.1rem 1.25rem 1.1rem 1rem;
+  padding: 1.1rem 1.1rem 1rem;
   cursor: pointer;
-  transition: transform 0.12s, box-shadow 0.12s, border-color 0.12s;
-  position: relative;
-  overflow: hidden;
+  transition: transform 0.15s, border-color 0.15s, box-shadow 0.15s;
+  position: relative; overflow: hidden;
 }
-.mode-card::before {
+.mode-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border2);
+  box-shadow: 0 8px 28px rgba(0,0,0,0.4);
+}
+.mode-card:active { transform: translateY(-1px); }
+/* coloured top edge on hover */
+.mode-card::after {
   content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  border-radius: var(--rl) var(--rl) 0 0;
-  opacity: 0; transition: opacity 0.15s;
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  opacity: 0; transition: opacity 0.15s; border-radius: var(--rl) var(--rl) 0 0;
 }
-.mode-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,31,75,0.12); border-color: var(--rule2); }
-.mode-card:hover::before { opacity: 1; }
-.mode-card:active { transform: translateY(0); }
+.mode-card:hover::after { opacity: 1; }
+.mode-card[data-mode="en-fr"]::after        { background: var(--blue); }
+.mode-card[data-mode="fr-en"]::after        { background: var(--red); }
+.mode-card[data-mode="conj-prompt"]::after  { background: var(--mint); }
+.mode-card[data-mode="conj-translate"]::after { background: var(--gold); }
 
-.mode-card[data-mode="en-fr"]::before { background: var(--blue); }
-.mode-card[data-mode="fr-en"]::before { background: var(--red); }
-.mode-card[data-mode="conj-prompt"]::before { background: var(--navy); }
-.mode-card[data-mode="conj-translate"]::before { background: var(--gold); }
-
-.mode-card .mc-icon {
-  font-size: 22px; margin-bottom: 8px; display: block;
+.mc-emoji { font-size: 24px; display: block; margin-bottom: 8px; }
+.mode-card h3 {
+  font-size: 13.5px; font-weight: 600; color: var(--text);
+  margin-bottom: 5px;
 }
-.mode-card[data-mode="en-fr"] .mc-icon    { color: var(--blue); }
-.mode-card[data-mode="fr-en"] .mc-icon    { color: var(--red); }
-.mode-card[data-mode="conj-prompt"] .mc-icon  { color: var(--navy); }
-.mode-card[data-mode="conj-translate"] .mc-icon { color: var(--gold); }
+.mode-card p { font-size: 12px; color: var(--text2); line-height: 1.55; }
 
-.mode-card h3 { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
-.mode-card p  { font-size: 12.5px; color: var(--ink2); line-height: 1.5; }
-
-/* ── Stats strip ── */
+/* ─── STATS STRIP ────────────────────────────────────────── */
 .stats-row {
   display: grid; grid-template-columns: repeat(3,1fr);
-  gap: 8px; margin-bottom: 0.25rem;
+  gap: 8px;
 }
 .stat-card {
-  background: var(--white);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: var(--r);
-  padding: 0.85rem 0.75rem;
+  padding: 0.9rem 0.75rem;
   text-align: center;
-  border: 1px solid var(--rule);
 }
-.stat-card .num { font-family: 'Fraunces', serif; font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1; }
-.stat-card .lbl { font-size: 11px; color: var(--ink3); margin-top: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
+.stat-card .num {
+  font-family: 'Fraunces', serif; font-size: 28px; font-weight: 600;
+  color: var(--text); line-height: 1;
+}
+.stat-card .lbl { font-size: 11px; color: var(--text3); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+#stat-correct { color: var(--mint); }
 
-/* ── Practice screen ── */
+/* ─── PRACTICE HEADER ────────────────────────────────────── */
 .practice-header {
-  display: flex; align-items: center; gap: 12px; margin-bottom: 1rem;
+  display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem;
 }
 .back-btn {
-  background: var(--white); border: 1px solid var(--rule2); border-radius: 8px;
-  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
-  cursor: pointer; font-size: 18px; color: var(--ink2); flex-shrink: 0;
-  transition: background 0.1s, color 0.1s;
+  background: var(--card); border: 1px solid var(--border2);
+  border-radius: 8px; width: 36px; height: 36px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; font-size: 16px; color: var(--text2); flex-shrink: 0;
+  transition: background 0.12s, color 0.12s;
 }
-.back-btn:hover { background: var(--navy); color: var(--white); border-color: var(--navy); }
+.back-btn:hover { background: var(--border2); color: var(--text); }
 .mode-label {
-  font-size: 12px; color: var(--ink3); text-transform: uppercase; letter-spacing: 0.06em;
+  font-size: 12px; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 0.07em;
 }
 
-/* ── Progress ── */
+/* ─── PROGRESS ───────────────────────────────────────────── */
 .progress-wrap { margin-bottom: 1.25rem; }
-.progress-bar { width: 100%; height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; }
-.progress-fill { height: 100%; background: linear-gradient(90deg, var(--blue), #6b9fff); border-radius: 3px; transition: width 0.4s cubic-bezier(0.4,0,0.2,1); }
-.progress-label { font-size: 11px; color: var(--ink3); text-align: right; margin-top: 4px; }
+.progress-bar {
+  width: 100%; height: 5px; background: var(--card2);
+  border-radius: 3px; overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--blue) 0%, var(--mint) 100%);
+  border-radius: 3px;
+  transition: width 0.45s cubic-bezier(0.4,0,0.2,1);
+}
+.progress-label { font-size: 11px; color: var(--text3); text-align: right; margin-top: 5px; }
 
-/* ── Tense filter ── */
+/* ─── TENSE FILTER ───────────────────────────────────────── */
 .option-row { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
-.option-row label { font-size: 13px; color: var(--ink2); font-weight: 500; }
+.option-row label { font-size: 13px; color: var(--text2); font-weight: 500; }
 select {
   font-size: 13px; padding: 7px 12px;
-  border: 1px solid var(--rule2); border-radius: var(--r);
-  background: var(--white); color: var(--ink); font-family: 'Inter', sans-serif; cursor: pointer;
+  border: 1px solid var(--border2); border-radius: var(--r);
+  background: var(--card); color: var(--text);
+  font-family: 'Inter', sans-serif; cursor: pointer; outline: none;
 }
 
-/* ── Question card ── */
+/* ─── QUESTION CARD ──────────────────────────────────────── */
 .question-card {
-  background: var(--cream);
-  border-radius: var(--rl);
-  padding: 1.75rem 1.75rem 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--rxl);
+  padding: 2rem 2rem 1.75rem;
   margin-bottom: 1rem;
-  border: 1px solid var(--rule);
-  box-shadow: 0 2px 12px rgba(26,31,75,0.07);
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.3);
 }
+/* decorative « watermark */
+.question-card::after {
+  content: '«';
+  position: absolute; right: 1.25rem; bottom: -0.5rem;
+  font-family: 'Fraunces', serif; font-size: 90px; font-style: italic; font-weight: 300;
+  line-height: 1; pointer-events: none; user-select: none;
+  color: rgba(255,255,255,0.03);
+}
+/* coloured left border accent */
 .question-card::before {
   content: '';
-  position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+  position: absolute; top: 0; left: 0; bottom: 0; width: 3px;
+  border-radius: var(--rxl) 0 0 var(--rxl);
 }
-.question-card[data-type="en-fr"]::before      { background: var(--blue); }
-.question-card[data-type="fr-en"]::before      { background: var(--red); }
-.question-card[data-type="conj-prompt"]::before { background: var(--navy); }
+.question-card[data-type="en-fr"]::before       { background: var(--blue); }
+.question-card[data-type="fr-en"]::before       { background: var(--red); }
+.question-card[data-type="conj-prompt"]::before { background: var(--mint); }
 .question-card[data-type="conj-translate"]::before { background: var(--gold); }
 
 .q-type {
-  font-size: 11px; color: var(--ink3); text-transform: uppercase;
-  letter-spacing: 0.07em; margin-bottom: 10px;
+  font-size: 11px; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 0.09em;
+  margin-bottom: 12px;
   display: flex; align-items: center; gap: 8px;
 }
 .q-text {
   font-family: 'Fraunces', Georgia, serif;
-  font-size: 26px; font-weight: 600; color: var(--navy);
-  line-height: 1.3; margin-bottom: 10px;
+  font-size: 28px; font-weight: 600; font-style: italic;
+  color: var(--white); line-height: 1.3; margin-bottom: 12px;
 }
-.q-hint { font-size: 13px; color: var(--ink3); }
+.q-hint { font-size: 13px; color: var(--text2); }
+.q-hint em { font-style: normal; color: var(--blue); }
 
 .queue-badge {
-  display: inline-block; font-size: 10px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 3px;
+  font-size: 10px; font-weight: 600;
   background: var(--warn-bg); color: var(--warn-tx);
-  border-radius: 20px; padding: 2px 8px; text-transform: uppercase; letter-spacing: 0.04em;
+  border: 1px solid rgba(245,200,66,0.2);
+  border-radius: 20px; padding: 2px 8px;
+  text-transform: uppercase; letter-spacing: 0.04em;
 }
 
-/* ── Answer input ── */
-.answer-wrap { position: relative; margin-bottom: 12px; }
+/* ─── ANSWER INPUT ───────────────────────────────────────── */
+.answer-wrap { margin-bottom: 12px; position: relative; }
 #answer-input {
   width: 100%; font-size: 17px; font-family: 'Inter', sans-serif;
-  padding: 12px 16px; border: 2px solid var(--rule2);
-  border-radius: var(--r); background: var(--white); color: var(--ink);
-  outline: none; transition: border-color 0.15s, box-shadow 0.15s;
+  padding: 13px 16px;
+  border: 1.5px solid var(--border2);
+  border-radius: var(--r);
+  background: var(--card); color: var(--text);
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
 }
-#answer-input:focus { border-color: var(--blue); box-shadow: 0 0 0 4px rgba(37,99,235,0.12); }
-#answer-input:disabled { background: var(--paper); color: var(--ink3); }
+#answer-input::placeholder { color: var(--text3); }
+#answer-input:focus {
+  border-color: var(--blue);
+  box-shadow: 0 0 0 3px var(--blue-glow);
+}
+#answer-input:disabled { background: var(--surface); color: var(--text3); }
 
-/* ── Buttons ── */
+/* ─── BUTTONS ────────────────────────────────────────────── */
 .btn-row { display: flex; gap: 8px; flex-wrap: wrap; }
 .btn {
   padding: 10px 22px; border-radius: var(--r);
-  border: 1.5px solid var(--rule2); background: var(--white);
-  color: var(--ink); font-size: 14px; font-weight: 500;
+  border: 1px solid var(--border2);
+  background: var(--card); color: var(--text);
+  font-size: 14px; font-weight: 500;
   cursor: pointer; font-family: 'Inter', sans-serif;
-  transition: background 0.12s, border-color 0.12s, transform 0.08s;
+  transition: background 0.12s, transform 0.08s, border-color 0.12s;
 }
-.btn:hover { background: var(--paper); border-color: var(--rule2); }
-.btn:active { transform: scale(0.98); }
+.btn:hover { background: var(--card2); border-color: var(--border2); }
+.btn:active { transform: scale(0.97); }
 .btn.primary {
-  background: var(--navy); color: var(--white); border-color: var(--navy);
+  background: var(--blue); color: var(--bg); border-color: var(--blue);
 }
-.btn.primary:hover { background: #2a3270; }
+.btn.primary:hover { background: #6aa3f9; border-color: #6aa3f9; }
 
-/* ── Feedback ── */
+/* ─── FEEDBACK ───────────────────────────────────────────── */
 .feedback-card {
-  border-radius: var(--rl); padding: 1.1rem 1.25rem;
-  margin-bottom: 1rem; animation: slideUp 0.2s ease;
+  border-radius: var(--rl);
+  padding: 1.1rem 1.25rem;
+  margin-bottom: 1rem;
+  animation: slideUp 0.18s ease;
 }
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(8px); }
+  from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  20%     { transform: translateX(-6px); }
+  40%     { transform: translateX(6px); }
+  60%     { transform: translateX(-4px); }
+  80%     { transform: translateX(4px); }
+}
 .feedback-card.correct  { background: var(--success-bg); border: 1px solid var(--success-bd); }
-.feedback-card.incorrect { background: var(--danger-bg);  border: 1px solid var(--danger-bd); }
+.feedback-card.incorrect {
+  background: var(--danger-bg); border: 1px solid var(--danger-bd);
+  animation: slideUp 0.18s ease, shake 0.35s ease 0.1s;
+}
 .f-title {
-  font-size: 14px; font-weight: 600; margin-bottom: 6px;
+  font-size: 14px; font-weight: 600; margin-bottom: 7px;
   display: flex; align-items: center; gap: 7px;
 }
 .feedback-card.correct  .f-title { color: var(--success-tx); }
 .feedback-card.incorrect .f-title { color: var(--danger-tx); }
-.f-body { font-size: 13.5px; color: var(--ink); line-height: 1.7; }
-.f-body em { font-style: italic; color: var(--navy); }
-.f-body strong { font-weight: 600; }
+.f-body { font-size: 13.5px; color: var(--text); line-height: 1.75; }
+.f-body em { color: var(--blue); font-style: italic; }
+.f-body strong { font-weight: 600; color: var(--white); }
 
-/* ── Complete screen ── */
+/* ─── COMPLETE ───────────────────────────────────────────── */
 .complete-card {
-  background: var(--white); border-radius: var(--rl);
-  border: 1px solid var(--rule);
-  padding: 3rem 2rem; text-align: center;
-  box-shadow: 0 4px 24px rgba(26,31,75,0.08);
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--rxl);
+  padding: 3rem 2rem;
+  text-align: center;
+  box-shadow: 0 8px 40px rgba(0,0,0,0.4);
   margin-top: 2rem;
+  position: relative; overflow: hidden;
+}
+.complete-card::before {
+  content: '« »';
+  position: absolute; left: 50%; top: -10px; transform: translateX(-50%);
+  font-family: 'Fraunces', serif; font-size: 140px; font-style: italic; font-weight: 300;
+  color: rgba(255,255,255,0.02); pointer-events: none; user-select: none;
+  line-height: 1;
 }
 .score-ring {
-  width: 120px; height: 120px; border-radius: 50%;
-  background: conic-gradient(var(--blue) 0%, var(--blue) var(--pct, 0%), var(--rule) var(--pct, 0%));
+  width: 130px; height: 130px; border-radius: 50%;
+  background: conic-gradient(var(--blue) 0%, var(--blue) var(--pct,0%), #2a3040 var(--pct,0%));
   display: flex; align-items: center; justify-content: center;
-  margin: 0 auto 1.25rem; position: relative;
+  margin: 0 auto 1.5rem; position: relative;
+  box-shadow: 0 0 30px rgba(79,142,247,0.2);
 }
 .score-ring::before {
-  content: ''; position: absolute; inset: 10px; border-radius: 50%; background: var(--white);
+  content: ''; position: absolute; inset: 12px;
+  border-radius: 50%; background: var(--card);
 }
-.score-inner {
-  position: relative; z-index: 1; text-align: center;
-}
-.score-inner .pct  { font-family: 'Fraunces', serif; font-size: 30px; font-weight: 700; color: var(--navy); line-height: 1; }
-.score-inner .lbl  { font-size: 11px; color: var(--ink3); }
-.complete-msg { font-size: 18px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
-.complete-sub { font-size: 14px; color: var(--ink2); margin-bottom: 2rem; }
+.score-inner { position: relative; z-index: 1; text-align: center; }
+.score-inner .pct { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 600; color: var(--white); line-height: 1; }
+.score-inner .lbl { font-size: 11px; color: var(--text3); }
+.complete-msg { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 600; font-style: italic; color: var(--white); margin-bottom: 6px; }
+.complete-sub { font-size: 14px; color: var(--text2); margin-bottom: 2.5rem; line-height: 1.6; }
 .center-row { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
-
-/* ── Accent icons (text emoji substitutes) ── */
-.check-icon::before { content: '✓'; }
-.cross-icon::before { content: '✗'; }
-.arrow-icon::before { content: '←'; }
 </style>
 </head>
 <body>
@@ -285,29 +364,32 @@ select {
     <div class="home-hero">
       <h1>French Verb Revision</h1>
       <div class="tagline">Year 9 · 53 verbs · 4 tenses</div>
+      <div class="streak-pill" id="streak-display" style="display:none">🔥 <span id="streak-num">0</span> correct in a row</div>
     </div>
+
     <div class="mode-grid">
       <div class="mode-card" data-mode="en-fr" onclick="startMode('en-fr')">
-        <span class="mc-icon">🇬🇧→🇫🇷</span>
+        <span class="mc-emoji">🇬🇧 → 🇫🇷</span>
         <h3>English → French</h3>
-        <p>See an English verb, type the French infinitive and its construction.</p>
+        <p>See an English verb, type the French infinitive and construction.</p>
       </div>
       <div class="mode-card" data-mode="fr-en" onclick="startMode('fr-en')">
-        <span class="mc-icon">🇫🇷→🇬🇧</span>
+        <span class="mc-emoji">🇫🇷 → 🇬🇧</span>
         <h3>French → English</h3>
         <p>See a French verb, type its English meaning and usage.</p>
       </div>
       <div class="mode-card" data-mode="conj-prompt" onclick="startMode('conj-prompt')">
-        <span class="mc-icon">📋</span>
+        <span class="mc-emoji">📋</span>
         <h3>Conjugation (prompted)</h3>
         <p>Verb + pronoun + tense given — produce the correct French form.</p>
       </div>
       <div class="mode-card" data-mode="conj-translate" onclick="startMode('conj-translate')">
-        <span class="mc-icon">💬</span>
+        <span class="mc-emoji">💬</span>
         <h3>Conjugation (translate)</h3>
         <p>Given "I played", produce the French equivalent.</p>
       </div>
     </div>
+
     <div class="stats-row">
       <div class="stat-card"><div class="num" id="stat-total">0</div><div class="lbl">answered</div></div>
       <div class="stat-card"><div class="num" id="stat-correct">0</div><div class="lbl">correct</div></div>
@@ -521,6 +603,7 @@ function cleanAnswer(bare,pronoun,tense,refl,group,irregular,aux){
 let currentMode=null,queue=[],retryQueue=[],currentQ=null;
 let sessionStats={total:0,correct:0};
 let globalStats={total:0,correct:0,retryCount:0};
+let streak=0;
 let awaitingNext=false;
 
 function startMode(mode){
@@ -580,10 +663,10 @@ function renderQuestion(q){
   const typeMap={"en-fr":"English → French","fr-en":"French → English","conj-prompt":"Conjugation — prompted","conj-translate":"Conjugation — translate"};
   const typeLabel=typeMap[q.type]||q.type;
   if(q.type==="en-fr"){
-    area.innerHTML=`<div class="question-card" data-type="en-fr"><div class="q-type">${typeLabel} ${badge}</div><div class="q-text">${q.verb.en}</div><div class="q-hint">Type the French infinitive with any construction notes</div></div>`;
+    area.innerHTML=`<div class="question-card" data-type="en-fr"><div class="q-type">${typeLabel} ${badge}</div><div class="q-text">${q.verb.en}</div><div class="q-hint">Type the French infinitive — accents required, brackets optional, e.g. <em>se dépêcher</em></div></div>`;
   }else if(q.type==="fr-en"){
     const d=q.verb.refl?"se "+q.verb.bare:q.verb.bare;
-    area.innerHTML=`<div class="question-card" data-type="fr-en"><div class="q-type">${typeLabel} ${badge}</div><div class="q-text">${d}</div><div class="q-hint">What does this verb mean in English?</div></div>`;
+    area.innerHTML=`<div class="question-card" data-type="fr-en"><div class="q-type">${typeLabel} ${badge}</div><div class="q-text">${d}</div><div class="q-hint">Type the full English meaning — brackets optional, e.g. <em>to visit</em> or <em>to enjoy oneself</em></div></div>`;
   }else if(q.type==="conj-prompt"){
     area.innerHTML=`<div class="question-card" data-type="conj-prompt"><div class="q-type">${typeLabel} ${badge}</div><div class="q-text">${q.verb.bare} — ${q.pronoun} — ${TENSE_LABELS[q.tense]}</div><div class="q-hint">Type the full conjugated phrase, e.g. <em>je vais</em></div></div>`;
   }else if(q.type==="conj-translate"){
@@ -658,15 +741,21 @@ function getCorrectAnswer(q){
 function checkAnswer(q,ua){
   const correct=getCorrectAnswer(q);
   if(q.type==="en-fr"){
-    const parts=correct.split("(")[0].trim().split("/").map(s=>normalise(s.trim()));
-    const un=normalise(ua);
-    return parts.some(p=>un.includes(p)||p.includes(un));
+    // Strip parenthetical construction notes from correct answer
+    // e.g. "se dépêcher (de INF)" → "se dépêcher", "finir (de INF) / (par INF)" → "finir"
+    const coreCorrect=correct.replace(/\s*\([^)]*\)/g,"").replace(/\s*\/\s*$/,"").trim();
+    // Also strip brackets from user answer so "jouer (du violon)" is accepted
+    const uaStripped=ua.trim().replace(/\s*\([^)]*\)/g,"").replace(/\s*\/\s*$/,"").trim();
+    return uaStripped.toLowerCase()===coreCorrect.toLowerCase();
   }
   if(q.type==="fr-en"){
-    const parts=q.verb.en.split("/").map(s=>normalise(s.replace("to ","").trim()));
-    const un=normalise(ua.replace("to ",""));
-    return parts.some(p=>un.includes(p)||p.includes(un));
+    // Strip parentheticals, split on "/", normalise "to " prefix so both "to visit" and slash alts work
+    const coreParts=correct.replace(/\s*\([^)]*\)/g,"").split("/").map(s=>s.trim().toLowerCase());
+    const uaTrimmed=ua.trim().toLowerCase();
+    // Also accept with or without leading "to " stripped, since some alternatives don't have it
+    return coreParts.some(p=>uaTrimmed===p||uaTrimmed==="to "+p||uaTrimmed.replace(/^to /,"")===p.replace(/^to /,""));
   }
+  // Conjugation: exact with accent normalisation
   return normalise(ua)===normalise(correct)||isGenderVariant(q,ua,correct);
 }
 
@@ -693,8 +782,16 @@ function submitAnswer(){
   const correct=getCorrectAnswer(currentQ);
   const ok=checkAnswer(currentQ,ua);
   sessionStats.total++;globalStats.total++;
-  if(ok){sessionStats.correct++;globalStats.correct++;showFeedback(true,ua,correct,currentQ);}
-  else{retryQueue.push({...currentQ,_retry:true});globalStats.retryCount++;showFeedback(false,ua,correct,currentQ);}
+  if(ok){
+    sessionStats.correct++;globalStats.correct++;
+    streak++;
+    showFeedback(true,ua,correct,currentQ);
+  }else{
+    streak=0;
+    retryQueue.push({...currentQ,_retry:true});
+    globalStats.retryCount++;
+    showFeedback(false,ua,correct,currentQ);
+  }
   awaitingNext=true;
   document.getElementById("answer-input").disabled=true;
   document.getElementById("submit-btn").style.display="none";
@@ -705,8 +802,9 @@ function submitAnswer(){
 function showFeedback(ok,ua,correct,q){
   const area=document.getElementById("feedback-area");
   const exp=buildExplanation(q,correct);
+  const streakNote=ok&&streak>=3?` <span style="color:var(--gold)">🔥 ${streak} in a row!</span>`:"";
   if(ok){
-    area.innerHTML=`<div class="feedback-card correct"><div class="f-title">✓ Correct!</div><div class="f-body">${exp||"Well done — keep going!"}</div></div>`;
+    area.innerHTML=`<div class="feedback-card correct"><div class="f-title">✓ Correct!${streakNote}</div><div class="f-body">${exp||"Well done — keep going!"}</div></div>`;
   }else{
     area.innerHTML=`<div class="feedback-card incorrect"><div class="f-title">✗ Not quite — the answer is: <strong>${correct}</strong></div><div class="f-body">${exp}</div></div>`;
   }
@@ -760,21 +858,25 @@ function updateStats(){
   document.getElementById("stat-total").textContent=globalStats.total;
   document.getElementById("stat-correct").textContent=globalStats.correct;
   document.getElementById("stat-queue").textContent=retryQueue.length;
+  // streak pill on home screen
+  const pill=document.getElementById("streak-display");
+  const snum=document.getElementById("streak-num");
+  if(streak>=3){pill.style.display="inline-flex";snum.textContent=streak;}
+  else pill.style.display="none";
 }
 
 function showComplete(){
   const pct=sessionStats.total>0?Math.round((sessionStats.correct/sessionStats.total)*100):0;
   document.getElementById("final-score").textContent=pct+"%";
   const ring=document.getElementById("score-ring");
-  ring.style.setProperty("--pct",pct+"%");
-  // colour ring by score
-  const colour=pct===100?"#22c55e":pct>=80?"#2563eb":pct>=60?"#f4a522":"#e63946";
-  ring.style.background=`conic-gradient(${colour} 0%, ${colour} ${pct}%, #e5e7eb ${pct}%)`;
+  const colour=pct===100?"#3dd68c":pct>=80?"#4f8ef7":pct>=60?"#f5c842":"#f25c5c";
+  ring.style.background=`conic-gradient(${colour} 0%, ${colour} ${pct}%, #2a3040 ${pct}%)`;
+  ring.style.boxShadow=`0 0 30px ${colour}40`;
   const msgs=[
-    [100,"Perfect score!","Every single one — outstanding work."],
-    [80,"Really well done!","Just a few to revisit — you're almost there."],
-    [60,"Good effort!","Keep practising the tricky ones and you'll crack them."],
-    [0,"Keep going!","Repetition is how it sticks — try again!"],
+    [100,"Parfait !","Every single one — that's outstanding."],
+    [80,"Très bien !","Almost there — just a few to revisit."],
+    [60,"Pas mal !","Keep practising the tricky ones — you're getting there."],
+    [0,"Continue !","Repetition is how it sticks — try again!"],
   ];
   const [,msg,sub]=msgs.find(([t])=>pct>=t);
   document.getElementById("final-msg").textContent=msg;
